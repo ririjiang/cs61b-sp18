@@ -3,6 +3,7 @@
  *  result matches hard coded value.
  */
 public class TestReadRadius {
+    
 
     /**
      *  Checks whether or not two Doubles are equal and prints the result.
