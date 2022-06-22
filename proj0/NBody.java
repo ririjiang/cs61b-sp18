@@ -33,27 +33,22 @@ public class NBody{
 
 
 	public static void main(String[] args) {
-		double dt = Double.parseDouble(args[0]);
-		double T = Double.parseDouble(args[1]);
+		double T = Double.parseDouble(args[0]);
+		double dt = Double.parseDouble(args[1]);
 		String filename = args[2];
 		double planetRadius = NBody.readRadius(filename);
-		Planet[] arrayPlanets = NBody.readPlanets(filename);
+		Planet[] allPlanets = NBody.readPlanets(filename);
 
 		/*draw background stargield.jpg*/
-		StdDraw.setScale(planetRadius,(-1)*planetRadius);
+		StdDraw.setScale(-planetRadius,planetRadius);
 		StdDraw.clear();
 		StdDraw.picture( 0, 0, "starfield.jpg");
-		StdDraw.show();
-
 
 		/*draw planet*/
-		Planet[] allPlanets = NBody.readPlanets(filename);
-		int i = 0 ;
-		while(i < allPlanets.length){
-			allPlanets[i].draw();
-			i++;
-		}
-		
+		for (Planet pl: allPlanets) {
+            pl.draw();
+        }
+		StdDraw.pause(0);
 		StdDraw.enableDoubleBuffering();
 		double timevariable = 0;
 		while(timevariable < T){
@@ -72,8 +67,15 @@ public class NBody{
 		}
 		StdDraw.show();
 		StdDraw.pause(10);
-		timevariable = timevariable+ dt;
+		timevariable = timevariable + dt;
 	}
+	StdOut.printf("%d\n", allPlanets.length);
+        StdOut.printf("%.2e\n",planetRadius );
+        for (int i = 0; i < allPlanets.length; i++) {
+            StdOut.printf("%11.4e %11.4e %11.4e %11.4e %11.4e %12s\n",
+                            allPlanets[i].xxPos, allPlanets[i].yyPos, allPlanets[i].xxVel,
+                            allPlanets[i].yyVel, allPlanets[i].mass, allPlanets[i].imgFileName);
+        }
 
 
 }
