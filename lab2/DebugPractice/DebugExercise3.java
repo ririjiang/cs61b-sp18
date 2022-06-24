@@ -14,8 +14,10 @@ public class DebugExercise3 {
                 totalTurnips = newTotal;
             }
             in.readLine();
+
         }
         return totalTurnips;
+
     }
 
     public static void main(String[] args) {
