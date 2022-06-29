@@ -1,5 +1,5 @@
 public class LinkedListDeque <T> {
-    public class ListItems {
+    private class ListItems {
         public T item;
         public ListItems next;
         public ListItems prev;
@@ -10,8 +10,8 @@ public class LinkedListDeque <T> {
         }
     }
 
-    public int size;
-    public ListItems sentinel;
+    private int size;
+    private ListItems sentinel;
 
     public LinkedListDeque() {
         size = 0;
@@ -73,7 +73,6 @@ public class LinkedListDeque <T> {
         T a = sentinel.next.item;
         this.sentinel.next.next.prev = this.sentinel;
         this.sentinel.next = this.sentinel.next.next;
-
         return a;
     }
 

@@ -1,10 +1,10 @@
 import javax.swing.plaf.synth.SynthTextAreaUI;
 
 public class ArrayDeque<T> {
-    public T[] item;
-    public int size;
-    public int nextFirst;
-    public int nextLast;
+    private T[] item;
+    private int size;
+    private int nextFirst;
+    private int nextLast;
     public ArrayDeque() {
         this.item = (T[]) new Object[8];
         size = 0;
@@ -12,28 +12,30 @@ public class ArrayDeque<T> {
         nextLast = 1;
     }
 
-    public int minusone(int index){
+    private int minusone(int index){
         if(index == 0){
            return index = this.item.length-1;
         }
         else {return index = index-1;}
     }
 
-    public int addone(int index){
+    private int addone(int index){
         if(index == this.item.length-1){
             return index = 0;
         }
          return index = index+1;
         }
     //resize array
-    public void resize(int changelength){
+    private void resize(int changelength){
         T[] Narray = (T[]) new Object[changelength];
-        System.arraycopy(this.item,0,Narray, 0,this.minusone(nextLast)+1);
-        System.arraycopy(this.item,this.addone(nextFirst),Narray, this.addone(Narray.length-this.size+nextFirst), this.item.length-1-nextFirst);
-        nextFirst = (Narray.length-1)-(item.length-nextFirst-1);
-        int next = this.minusone(nextLast);
-        this.item = Narray;
-        nextLast = this.addone(next);
+        for(int i =0; i < this.size;i++){
+            int p = this.addone(nextFirst);
+            Narray[i] = this.item[p];
+            p = this.addone(p);
+        }
+        nextFirst = Narray.length-1;
+        nextLast = size;
+        item = Narray;
     }
 
     public void addFirst(T thing){
@@ -129,10 +131,12 @@ public class ArrayDeque<T> {
         return removedBack;
     }
 
-
     public static void main(String[] args) {
-        ArrayDeque<String> a1 = new ArrayDeque<>();
-        a1.item[0] = "0";
-        System.out.println(a1.item[1]);
+        ArrayDeque<Integer> D1 = new ArrayDeque<>();
+        D1.addLast(0);
+        D1.addLast(1);
+        D1.removeFirst();
     }
+
+
 }
