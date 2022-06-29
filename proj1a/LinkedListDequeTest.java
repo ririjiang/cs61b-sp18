@@ -86,36 +86,19 @@ public class LinkedListDequeTest {
 
 	public static void main(String[] args) {
 		LinkedListDeque<Integer> D1 = new LinkedListDeque<>();
-		D1.addFirst(3);
-		D1.addLast(5);
-		D1.addFirst(3);
-		D1.addLast(5);
-		D1.addFirst(3);
-		D1.addLast(5);
-		D1.addFirst(3);
-		D1.addLast(5);
-		D1.addFirst(3);
-		D1.addLast(5);
-		D1.addFirst(3);
-		D1.addLast(5);
-		D1.addFirst(3);
-		D1.addLast(5);
-		D1.addFirst(3);
-		D1.addLast(5);
-		D1.removeLast();
+		D1.addLast(1);
 		D1.removeFirst();
-		D1.removeLast();
+		D1.addFirst(2);
 		D1.removeFirst();
-		D1.removeLast();
-		D1.removeFirst();
-		D1.removeLast();
-		D1.removeFirst();
-		D1.removeLast();
-		D1.removeFirst();
-		D1.removeLast();
-		D1.removeFirst();
-		D1.removeLast();
-		int ok = D1.get(1);
+		D1.addLast(3);
+		D1.addFirst(0);
+		D1.addFirst(1);
+		D1.addFirst(2);
+		D1.addFirst(3);
+		D1.addFirst(4);
+
+
+		int ok = D1.getRecursive(5);
 		System.out.println(ok);
 	}
 } 

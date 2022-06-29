@@ -119,9 +119,9 @@ public class LinkedListDeque <T> {
         }
     }
 
-    public T recursivehelper(ListItems p, int x){
+    private T recursivehelper(ListItems p, int x){
         if(x == 0){
-            return p.item;
+            return p.next.item;
         }
         return recursivehelper(p.next, x-1);
     }

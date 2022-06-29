@@ -34,8 +34,8 @@ public class ArrayDeque<T> {
             p = this.addone(p);
         }
         nextFirst = Narray.length-1;
-        nextLast = size;
         item = Narray;
+        nextLast = this.addone(size-1);
     }
 
     public void addFirst(T thing){
@@ -75,6 +75,9 @@ public class ArrayDeque<T> {
 
     /** Gets the ith item in the list (0 is the front). */
     public T get(int i) {
+        if(size == 0){
+            return null;
+        }
         return item[i];
     }
 
@@ -94,21 +97,29 @@ public class ArrayDeque<T> {
     /** Deletes item from front of the list and
      * returns deleted item. */
     public T removeFirst(){
-        int i = this.addone(nextFirst);
-        T removedFront = item[i];
-        item[this.addone(nextFirst)] = null;
-        size--;
-        nextFirst = this.addone(nextFirst);
-        double ratio = (double)size/this.item.length;
-        if(ratio <= 0.25 ){
-            resize(this.item.length/4);
+        if(isEmpty()){
+            return null;
         }
-        return removedFront;
+        else {
+            int i = this.addone(nextFirst);
+            T removedFront = item[i];
+            item[this.addone(nextFirst)] = null;
+            size--;
+            nextFirst = this.addone(nextFirst);
+            double ratio = (double) size / this.item.length;
+            if (ratio <= 0.25) {
+                resize(this.item.length / 4);
+            }
+            return removedFront;
+        }
     }
 
     /** Deletes item from back of the list and
      * returns deleted item. */
     public T removeLast(){
+        if(isEmpty()){
+            return null;
+        }
         T removedBack = item[this.minusone(nextLast)];
         item[this.minusone(nextLast)] = null;
         size--;
