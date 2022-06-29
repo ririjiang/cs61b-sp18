@@ -28,8 +28,8 @@ public class ArrayDeque<T> {
     //resize array
     private void resize(int changelength){
         T[] Narray = (T[]) new Object[changelength];
+        int p = this.addone(nextFirst);
         for(int i =0; i < this.size;i++){
-            int p = this.addone(nextFirst);
             Narray[i] = this.item[p];
             p = this.addone(p);
         }
@@ -42,6 +42,7 @@ public class ArrayDeque<T> {
         if(size == item.length){
             resize(this.size*4);
             item [nextFirst] =thing;
+            nextFirst = this.minusone(nextFirst);
             size++;
         }
         else{
@@ -57,7 +58,7 @@ public class ArrayDeque<T> {
         if(size == item.length){
             resize(this.size*4);
             item [nextLast] =thing;
-            nextLast++;
+            nextLast = this.addone(nextLast);
             size++;
         }
         else{
@@ -95,7 +96,7 @@ public class ArrayDeque<T> {
     public T removeFirst(){
         int i = this.addone(nextFirst);
         T removedFront = item[i];
-        item[nextFirst+1] = null;
+        item[this.addone(nextFirst)] = null;
         size--;
         nextFirst = this.addone(nextFirst);
         double ratio = (double)size/this.item.length;
@@ -118,12 +119,6 @@ public class ArrayDeque<T> {
         return removedBack;
     }
 
-    public static void main(String[] args) {
-        ArrayDeque<Integer> D1 = new ArrayDeque<>();
-        D1.addLast(0);
-        D1.addLast(1);
-        D1.removeFirst();
-    }
 
 
 }

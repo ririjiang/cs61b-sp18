@@ -27,12 +27,16 @@ public class LinkedListDeque <T> {
             sentinel.prev = first;
             sentinel.next =first;
             first.next =sentinel;
+            first.prev=sentinel;
+            first.item = item;
         }
-        first.next = sentinel.next;
-        first.prev =sentinel;
-        first.item = item;
-        sentinel.next.prev = first;
-        sentinel.next = first;
+        else {
+            first.next = sentinel.next;
+            first.prev =sentinel;
+            first.item = item;
+            sentinel.next.prev = first;
+            sentinel.next = first;
+        }
 
         size++;
     }
@@ -41,12 +45,18 @@ public class LinkedListDeque <T> {
         ListItems Last = new ListItems();
         if(isEmpty()){
             sentinel.next = Last;
+            sentinel.prev= Last;
+            Last.prev = sentinel;
+            Last.next = sentinel;
+            Last.item = item;
         }
-        Last.next = sentinel;
-        Last.prev = sentinel.prev;
-        Last.item = item;
-        sentinel.prev.next = Last;
-        sentinel.prev = Last;
+        else {
+            Last.next = sentinel;
+            Last.prev = sentinel.prev;
+            Last.item = item;
+            sentinel.prev.next = Last;
+            sentinel.prev = Last;
+        }
         size++;
     }
 
@@ -69,26 +79,29 @@ public class LinkedListDeque <T> {
     }
 
     public T removeFirst(){
-        size--;
         if(isEmpty()){
             return null;
         }
-        T a = sentinel.next.item;
-        this.sentinel.next.next.prev = this.sentinel;
-        this.sentinel.next = this.sentinel.next.next;
-        return a;
+        else {
+            T a = sentinel.next.item;
+            this.sentinel.next.next.prev = this.sentinel;
+            this.sentinel.next = this.sentinel.next.next;
+            size = size-1;
+            return a;
+        }
     }
 
     public T removeLast(){
-        size--;
         if(isEmpty()){
             return null;
         }
-        T a = sentinel.prev.item;
-        this.sentinel.prev.prev.next = this.sentinel;
-        this.sentinel.prev = this.sentinel.prev.prev;
-        return a;
-
+        else {
+            T a = sentinel.prev.item;
+            this.sentinel.prev.prev.next = this.sentinel;
+            this.sentinel.prev = this.sentinel.prev.prev;
+            size--;
+            return a;
+        }
     }
 
     public T get(int index){
@@ -101,7 +114,9 @@ public class LinkedListDeque <T> {
         }
         return track.item;
         }
+        else {
         return null;
+        }
     }
 
     public T recursivehelper(ListItems p, int x){
@@ -114,7 +129,9 @@ public class LinkedListDeque <T> {
         if(index<size){
         return recursivehelper(sentinel,index);
         }
+        else{
         return null;
+        }
     }
 
 }
