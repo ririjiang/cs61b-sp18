@@ -115,5 +115,7 @@ public class LinkedListDequeTest {
 		D1.removeLast();
 		D1.removeFirst();
 		D1.removeLast();
+		int ok = D1.get(1);
+		System.out.println(ok);
 	}
 } 
