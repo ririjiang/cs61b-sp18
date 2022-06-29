@@ -91,10 +91,15 @@ public class ArrayDeque<T> {
 
     /** Gets the ith item in the list (0 is the front). */
     public T get(int i) {
-        if(size == 0){
+        if(i > item.length - 1){
             return null;
+        }else {
+            if ((addone(nextFirst) + i) > item.length - 1) {
+                return item[i - (item.length - nextFirst) +1];
+            } else{
+                return item[nextFirst + i +1];
+            }
         }
-        return item[i];
     }
 
     /** Returns the number of items in the list. */
