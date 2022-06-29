@@ -1,3 +1,5 @@
+import javax.swing.plaf.synth.SynthTextAreaUI;
+
 public class ArrayDeque<T> {
     public T[] item;
     public int size;
@@ -29,8 +31,9 @@ public class ArrayDeque<T> {
         System.arraycopy(this.item,0,Narray, 0,this.minusone(nextLast)+1);
         System.arraycopy(this.item,this.addone(nextFirst),Narray, this.addone(Narray.length-this.size+nextFirst), this.item.length-1-nextFirst);
         nextFirst = (Narray.length-1)-(item.length-nextFirst-1);
-        nextLast = this.minusone(nextLast)+1;
+        int next = this.minusone(nextLast);
         this.item = Narray;
+        nextLast = this.addone(next);
     }
 
     public void addFirst(T thing){
@@ -128,22 +131,8 @@ public class ArrayDeque<T> {
 
 
     public static void main(String[] args) {
-        ArrayDeque<Integer> a1 = new ArrayDeque<>();
-        a1.addLast(3);
-        a1.addLast(3);
-        a1.addLast(3);
-        a1.addLast(3);
-        a1.addLast(3);
-        a1.addFirst(3);
-        a1.addLast(3);
-        a1.addLast(3);
-        a1.addFirst(3);
-        a1.addLast(3);
-        a1.addLast(3);
-        a1.removeFirst();
-        a1.removeLast();
-        a1.removeLast();
-        a1.removeLast();
-
+        ArrayDeque<String> a1 = new ArrayDeque<>();
+        a1.item[0] = "0";
+        System.out.println(a1.item[1]);
     }
 }

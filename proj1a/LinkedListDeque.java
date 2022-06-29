@@ -1,7 +1,3 @@
-import com.sun.security.auth.module.NTSystem;
-
-import java.util.List;
-
 public class LinkedListDeque <T> {
     public class ListItems {
         public T item;
@@ -94,26 +90,29 @@ public class LinkedListDeque <T> {
     }
 
     public T get(int index){
-        int num = size;
+        if(index < size){
+        int num = index+1;
         ListItems track = sentinel;
         while (num >0 ){
             track = track.next;
             num--;
         }
         return track.item;
-    }
-
-   /** public T getRecursive(int index){
-        if(size == 0){
-            return null;
         }
-        int a = index;
-        a--;
-        return;
+        return null;
     }
-*/
 
-
-
+    public T recursivehelper(ListItems p, int x){
+        if(x == 0){
+            return p.item;
+        }
+        return recursivehelper(p.next, x-1);
+    }
+    public T getRecursive(int index){
+        if(index<size){
+        return recursivehelper(sentinel,index);
+        }
+        return null;
+    }
 
 }
