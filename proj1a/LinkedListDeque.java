@@ -103,15 +103,15 @@ public class LinkedListDeque <T> {
         return track.item;
     }
 
-    public T getRecursive(int index){
+   /** public T getRecursive(int index){
         if(size == 0){
             return null;
         }
         int a = index;
         a--;
-        return
+        return;
     }
-
+*/
 
 
 
