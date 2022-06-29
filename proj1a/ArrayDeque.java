@@ -39,33 +39,49 @@ public class ArrayDeque<T> {
     }
 
     public void addFirst(T thing){
-        if(size == item.length){
-            resize(this.size*4);
-            item [nextFirst] =thing;
-            nextFirst = this.minusone(nextFirst);
-            size++;
-        }
-        else{
+        if (size == 0) {
+            this.item = (T[]) new Object[8];
+            nextFirst =0;
+            nextLast = 1;
+            item[nextFirst] =thing;
+            nextFirst = 7;
+            size = size + 1;
+        }else {
+            if (size == item.length) {
+                resize(this.size * 4);
+                item[nextFirst] = thing;
+                nextFirst = this.minusone(nextFirst);
+                size++;
+            } else {
                 item[nextFirst] = thing;
                 nextFirst = minusone(nextFirst);
                 size++;
             }
         }
+        }
 
 
     /** Inserts X into the back of the list. */
     public void addLast(T thing) {
-        if(size == item.length){
-            resize(this.size*4);
-            item [nextLast] =thing;
-            nextLast = this.addone(nextLast);
-            size++;
-        }
-        else{
+        if (size == 0) {
+            this.item = (T[]) new Object[8];
+            nextFirst =0;
+            nextLast = 1;
+            item[nextFirst] =thing;
+            nextFirst = 7;
+            size = size + 1;
+        } else {
+            if (size == item.length) {
+                resize(this.size * 4);
+                item[nextLast] = thing;
+                nextLast = this.addone(nextLast);
+                size++;
+            } else {
                 item[nextLast] = thing;
                 nextLast = addone(nextLast);
                 size++;
             }
+        }
         }
 
 
