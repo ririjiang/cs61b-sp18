@@ -23,27 +23,30 @@ public class LinkedListDeque <T> {
 
     public void addFirst(T item) {
         ListItems first = new ListItems();
+        if (isEmpty()){
+            sentinel.prev = first;
+            sentinel.next =first;
+            first.next =sentinel;
+        }
         first.next = sentinel.next;
         first.prev =sentinel;
         first.item = item;
         sentinel.next.prev = first;
         sentinel.next = first;
-        if (isEmpty()){
-        sentinel.prev = first;
-        }
+
         size++;
     }
 
     public void addLast(T item) {
         ListItems Last = new ListItems();
+        if(isEmpty()){
+            sentinel.next = Last;
+        }
         Last.next = sentinel;
         Last.prev = sentinel.prev;
         Last.item = item;
         sentinel.prev.next = Last;
         sentinel.prev = Last;
-        if(isEmpty()){
-            sentinel.next = Last;
-        }
         size++;
     }
 

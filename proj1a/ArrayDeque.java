@@ -42,22 +42,15 @@ public class ArrayDeque<T> {
         if(size == item.length){
             resize(this.size*4);
             item [nextFirst] =thing;
-            nextFirst--;
             size++;
         }
         else{
-            if (nextFirst == 0){
-                nextFirst = item.length-1;
-                item[0] = thing;
-                size++;
-            }
-            else{
                 item[nextFirst] = thing;
-                nextFirst--;
+                nextFirst = minusone(nextFirst);
                 size++;
             }
         }
-    }
+
 
     /** Inserts X into the back of the list. */
     public void addLast(T thing) {
@@ -68,18 +61,12 @@ public class ArrayDeque<T> {
             size++;
         }
         else{
-            if (nextLast == item.length -1){
-                nextLast = 0;
-                item[item.length -1] = thing;
-                size++;
-            }
-            else{
                 item[nextLast] = thing;
-                nextLast++;
+                nextLast = addone(nextLast);
                 size++;
             }
         }
-    }
+
 
     public boolean isEmpty(){
         return size==0;
