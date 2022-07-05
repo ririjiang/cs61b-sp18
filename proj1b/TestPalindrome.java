@@ -19,19 +19,17 @@ public class TestPalindrome {
     }
 
     @Test
-    public void testisPalindrome(){
-        boolean A = palindrome.isPalindrome("cat");
-        assertFalse(A);
+    public void testIsPalindrome(){
+        assertFalse(palindrome.isPalindrome("cat"));
         assertTrue(palindrome.isPalindrome("noon"));
         assertTrue(palindrome.isPalindrome(""));
         assertTrue(palindrome.isPalindrome("g"));
         assertTrue(palindrome.isPalindrome("acoca"));
-
-    }
-    @Test
-    public void testisPalindromeOffByOne(){
         CharacterComparator testOff = new OffByOne();
+        assertTrue(palindrome.isPalindrome("c",testOff));
         assertTrue(palindrome.isPalindrome("flake",testOff));
         assertTrue(palindrome.isPalindrome("maqbl",testOff));
-        }
+
+    }
+
 }

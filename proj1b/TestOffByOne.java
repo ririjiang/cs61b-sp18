@@ -7,12 +7,11 @@ public class TestOffByOne {
     // new ones, or the autograder might be upset.
     static CharacterComparator offByOne = new OffByOne();
     @Test
-    public void testequalChars() {
+    public void testEqualChars() {
         assertTrue(offByOne.equalChars('a','b'));
         assertFalse(offByOne.equalChars('a','d'));
         assertFalse(offByOne.equalChars('^','0'));
         assertFalse(offByOne.equalChars(' ','b'));
         }
-
 
     }
